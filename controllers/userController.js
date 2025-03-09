@@ -14,11 +14,11 @@ export const registerUser = async (req , res) => {
     try{
         const userExist = await User.findOne({email});
         if(userExist){
-            return res.status(400).json({Message : 'user alredy exists'}); 
+            return res.status(400).json({Message : 'user already exists'}); 
         }
         const hashedPassword = await bcrypt.hash(password, 15);
         const user = await User.create({name , email , password:hashedPassword})
-        return res.status(201).json({Message : 'Successfuly Registerd' , _id: user._id , name : user.name , email : user.email});
+        return res.status(201).json({Message : 'Successfully Registered' , _id: user._id , name : user.name , email : user.email});
     }catch(error){
         return res.status(500).json({Message : 'Server error'});
     }
@@ -50,14 +50,14 @@ export const loginUser = async (req , res) => {
 // logout user
 
 export const logOut = async (req , res) => {
-    console.log("🚀 ~ logOut ~ req:", req.session)
+    // console.log("🚀 ~ logOut ~ req:", req.session)
     req.session.destroy(function(err){
         if(err){
             return res.status(400).json({Message : 'Logout failed'});
         };
     });
     console.log("🚀 ~ logOut ~ req:", req.session);
-    return res.status(200).json({Message : `Session Deleted and logout successfuly`});
+    return res.status(200).json({Message : `Session Deleted and logout successfully`});
 };
 
 
