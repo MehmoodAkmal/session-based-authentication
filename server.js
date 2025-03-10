@@ -23,7 +23,7 @@ app.use(session({
 
 
 app.use('/api/user' , userRoutes);
-app.use('/api/task' , taskRoutes)
+app.use('/api/task' , taskRoutes);
 
 
 app.listen(port , () => {
